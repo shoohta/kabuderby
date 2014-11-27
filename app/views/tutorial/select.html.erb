@@ -1,0 +1,17 @@
+<h1>銘柄選択</h1>
+<table border="1">
+  <tr>
+    <th>会社名</th>
+    <th>株価</th>
+    <th>単元株</th>
+    <th></th>
+  </tr>
+  <% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.value %></td>
+    <td><%= company.unit %></td>
+    <td><%= link_to 'buy', tutorial_buy_path(company) %></td>
+  </tr>
+  <% end %> 
+</table>

@@ -1,0 +1,9 @@
+<h1>
+購入画面
+</h1>
+<h2>残高:<%= current_user.cash %></h2>
+<h2>銘柄: <%= @company.name %></h2>
+<h2>株価:  <%= @company.value %></h2>
+<h2>単元株: <%= @company.unit %></h2>
+<h1>フォーム（購入株数、購入額、決定ボタン）</h1>
+<h2><%= link_to '確認画面へ', tutorial_confirm_path(@company) %></h2>
