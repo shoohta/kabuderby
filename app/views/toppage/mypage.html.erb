@@ -1,3 +1,19 @@
 <h1>MYPAGE</h1>
-<h1>購入履歴order_table<h1>
-<h1>資産情報cash,持ち株の銘柄、現在価格,損益</h1>
+<h1>ユーザー名:<%= current_user.name %></h1>
+<table border="1">
+  <tr>
+    <th>銘柄</th>
+    <th>数量</th>
+    <th>価格</th>
+    <th>約定日時</th>   
+  </tr>
+  <%= @orders.each do |order| %>
+  <tr>
+    <td><%= order.company.name %></td>
+    <td><%= order.quantity %></td>
+    <td><%= order.order_value %></td>
+    <td><%= order.created_at %></td>
+  </tr>
+  <% end %>
+</table>
+<h1><%= link_to 'トップページへ', '/toppage/index' %></h1>

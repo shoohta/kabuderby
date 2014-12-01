@@ -1,3 +1,12 @@
-<h1><%= link_to 'トップページへ', '/toppage/index' %></h1>
-<h2>購入結果</h2>
+<h1>確認画面</h1>
+<h1>会社名:<%= @company.name %></h1>
+<h1>購入株数:<%= @order.quantity %></h1>
+<h1>購入金額<%= @company.value * @order.quantity %></h1>
 <h2>購入後の残高cash</h2>
+<%= form_for @order, url: tutorial_complete_path do |f| %>
+<%= f.hidden_field :company_id %>
+<%= f.hidden_field :quantity %>
+<%= f.hidden_field :order_value %>
+<%= f.submit "決定", class: "btn btn-large btn-primary" %>
+
+<% end %>

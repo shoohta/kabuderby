@@ -1,14 +1,19 @@
 class TutorialController < ApplicationController
-	before_action :set_company, only: [:buy, :confirm]
+	before_action :set_company, only: [:buy, :confirm, :confirm]
 
 	def select
 		@companies = Company.all
 	end
 
 	def buy
+		@order = Order.new(company_id: params[:id], order_value: @company.value)
+	end
+	def confirm
+		@order = current_user.orders.build(order_params)
 	end
 
-	def confirm
+	def complete
+		current_user.orders.create(order_params)
 	end
 
 	private
@@ -22,6 +27,10 @@ class TutorialController < ApplicationController
     def tutorial_params
       params.require(:companies).permit(:name, :value, :unit)
     end
+    def order_params
+    	params.require(:order).permit(:quantity, :company_id, :order_value)
+    end
+
 
 end
 
