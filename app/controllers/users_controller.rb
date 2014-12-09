@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Kabuderby!"
-      redirect_to @user
+      redirect_to toppage_index_path
     else
       render 'new'
     end

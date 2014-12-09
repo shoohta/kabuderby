@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   #has_many ,belongs_to
   has_many :orders
+  has_many :portfolios
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -14,6 +15,21 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+  def total_value
+    i = 0
+    self.portfolios.each do |portfolio|
+      i += portfolio.company.value * portfolio.quantity
+    end
+    return i
+  end
+
+  def profit
+    number = 0
+    self.portfolios.each do |portfolio|
+      number +=  portfolio.company.value * portfolio.quantity - portfolio.average * portfolio.quantity 
+    end
+    return number
   end
 
   private

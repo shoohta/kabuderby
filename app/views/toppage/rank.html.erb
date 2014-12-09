@@ -1,0 +1,17 @@
+<h1>ランキング</h1>
+<h1>ユーザー名:<%= current_user.name %></h1>
+<table border="1">
+  <tr>
+    <th>順位</th>
+    <th>ユーザー名</th>
+    <th>損益</th>   
+  </tr>
+  <% @users.each_with_index do |user,i| %>
+  <tr>
+    <td><%= i + 1 %></td>
+    <td><%= user.name %></td>
+    <td><%= user.profit %></td>
+  </tr>
+  <% end %>
+</table>
+<h1><%= link_to 'トップページへ', '/toppage/index' %></h1>

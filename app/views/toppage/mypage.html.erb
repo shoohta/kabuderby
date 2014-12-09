@@ -1,19 +1,31 @@
-<h1>MYPAGE</h1>
+<h1>ポートフォリオ</h1>
 <h1>ユーザー名:<%= current_user.name %></h1>
+
+<h1>購買余力:<%=  current_user.cash %>円</h1>
+<h1>株の時価評価額合計:<%= current_user.total_value %>円</h1>
+<h1>資産総額:<%=  current_user.cash + current_user.total_value %>円</h1>
+<h1>通算損益:<%=  current_user.cash + current_user.total_value - 10000000 %>円</h1>
+<br>
+<h1>持ち株一覧</h1>
 <table border="1">
   <tr>
-    <th>銘柄</th>
-    <th>数量</th>
-    <th>価格</th>
-    <th>約定日時</th>   
+    <th>会社名</th>
+    <th>保有数量</th>
+    <th>平均取得価額</th>
+    <th>現在値</th>
+    <th>時価評価額</th>
+    <th>評価損益</th>
   </tr>
-  <%= @orders.each do |order| %>
+  <% @portfolios.each do |portfolio| %>
   <tr>
-    <td><%= order.company.name %></td>
-    <td><%= order.quantity %></td>
-    <td><%= order.order_value %></td>
-    <td><%= order.created_at %></td>
+    <td><%= portfolio.company.name %></td>
+    <td><%= portfolio.quantity %></td>
+    <td><%= portfolio.average %></td>
+    <td><%= portfolio.company.value %></td>
+    <th><%= portfolio.company.value * portfolio.quantity %></th>
+    <th><%= portfolio.company.value * portfolio.quantity - portfolio.average * portfolio.quantity  %>(<%= number_to_percentage(portfolio.average .quo(portfolio.company.value) * 100 - 100) %>)</th>
   </tr>
-  <% end %>
+  <% end %> 
 </table>
+
 <h1><%= link_to 'トップページへ', '/toppage/index' %></h1>

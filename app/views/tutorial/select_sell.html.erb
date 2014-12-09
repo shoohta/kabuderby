@@ -1,0 +1,23 @@
+<h1>持ち株一覧</h1>
+<table border="1">
+  <tr>
+    <th>会社名</th>
+    <th>保有数量</th>
+    <th>平均取得価額</th>
+    <th>現在値</th>
+    <th>時価評価額</th>
+    <th>評価損益</th>
+    <th></th>
+  </tr>
+  <% @portfolios.each do |portfolio| %>
+  <tr>
+  	<td><%= portfolio.company.name %></td>
+  	<td><%= portfolio.quantity %></td>
+  	<td><%= portfolio.average %></td>
+  	<td><%= portfolio.company.value %></td>
+    <th><%= portfolio.company.value * portfolio.quantity %></th>
+    <th><%= portfolio.average * portfolio.quantity - portfolio.company.value * portfolio.quantity %>(<%= number_to_percentage(portfolio.average .quo(portfolio.company.value) * 100 - 100) %>)</th>
+	<td><%= link_to 'sell', tutorial_sell_path(portfolio) %></td>
+  </tr>
+  <% end %> 
+</table>

@@ -9,6 +9,13 @@ Kabuderby::Application.routes.draw do
   post "/tutorial/confirm/:id", to: "tutorial#confirm", as: 'tutorial_confirm'
   post "/tutorial/complete:id", to: "tutorial#complete", as: 'tutorial_complete'
   get "toppage/mypage"
+  get "/tutorial/select_sell"
+  get "/tutorial/sell/:id", to: "tutorial#sell", as: 'tutorial_sell'
+  post "/tutorial/sell_confirm/:id", to: "tutorial#sell_confirm", as: 'tutorial_sell_confirm'
+  #get "/tutorial/sell_complete/"
+  get "/toppage/rank"
+  get "/toppage/order"
+  get "/toppage/lesson"
 
 
   resources :users
