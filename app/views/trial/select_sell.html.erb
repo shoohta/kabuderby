@@ -1,0 +1,27 @@
+<h1>購買余力:<%= 10000000 - @company.value * 100 %>円</h1>
+<h1>ポートフォリオ</h1>
+売却画面では自分のポートフォリオが表示されるので、売りたい銘柄を選択します。<br>
+ポートフォリオ=自分の持つ株などの金融商品の組み合わせ
+平均取得価格=買った時点での価格の平均<br>
+時価評価額=その株全ての現在価値(保有数量×現在値)<br>
+評価損益=その株を買ってから現在までの収支
+<table border="1">
+  <tr>
+    <th>銘柄</th>
+    <th>保有数量</th>
+    <th>平均取得価額</th>
+    <th>現在値</th>
+    <th>時価評価額</th>
+    <th>評価損益</th>
+    <th></th>
+  </tr>
+  <tr>
+  	<td><%= @company.name %></td>
+  	<td>100</td>
+  	<td><%= @company.value %></td>
+  	<td><%= @company.value %></td>
+    <th><%= @company.value * 100 %></th>
+    <th>0</th>
+	<td><%= link_to 'sell', trial_sell_path %></td>
+  </tr>
+</table>

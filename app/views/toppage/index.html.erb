@@ -5,6 +5,7 @@
   <body>
     <h1>ユーザー名:<%= current_user.name %></h1>
     <h1>購買余力:<%= current_user.cash %>円</h1>
+    <h1><%= link_to "チュートリアルへ", trial_select_path %></h1>
   	<h1><%= link_to "購入ページへ", tutorial_select_path %></h1>
   	<h1><%= link_to "売却ページへ", tutorial_select_sell_path %></h1>
   	<h1><%= link_to "ポートフォリオページへ", toppage_mypage_path %></h1>

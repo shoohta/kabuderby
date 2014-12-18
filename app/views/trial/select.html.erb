@@ -1,0 +1,24 @@
+<h1>チュートリアル銘柄選択</h1>
+この画面では買いたい銘柄を選択します！<br>
+銘柄＝会社名のことです！<br>
+株価＝１株あたりの金額です！<br>
+単元株＝株の最低購入単位です。
+この場合、100株以上で100の倍数でしか購入できません。<br>
+購買余力=あなたの持つ現金の金額です！
+<table border="1">
+  <tr>
+    <th>銘柄</th>
+    <th>株価</th>
+    <th>単元株</th>
+    <th></th>
+  </tr>
+  <% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.value %></td>
+    <td><%= company.unit %></td>
+    <td><%= link_to '選択する', trial_buy_path(company) %></td>
+  </tr>
+  <% end %> 
+</table>
+<h1>購買余力:10000000円</h1>

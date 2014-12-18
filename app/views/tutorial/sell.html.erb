@@ -1,12 +1,14 @@
 <h2>残高:<%= current_user.cash %>円</h2>
-<h2>銘柄: <%= @portfolio.company.name %></h2>
+<h2>銘柄:<%= @portfolio.company.name %></h2>
 <h2>現在値:<%= @portfolio.company.value %>円</h2>
-<h2>単元株:<%= @portfolio.unit %></h2>
-<h2>保有数量:<%= @portfolio.quantity %></h2>
+<h2>単元株:<%= @portfolio.company.unit %>株</h2>
+<h2>保有数量:<%= @portfolio.quantity %>株</h2>
 <%= form_for @order, url: tutorial_sell_confirm_path do |f| %>
-      <div class="field">
-        <%= f.label :quantity, "売却株数" %><br>
-        <%= f.text_field :quantity %>
-        <%= f.hidden_field :company_id %>
-      <%= f.submit "確認画面へ", class: "btn btn-large btn-primary" %>
-    <% end %>
+     <div class="field">
+     <%= f.label :quantity, "売却株数" %><br>
+     <%= f.text_field :quantity %>
+     <%= f.hidden_field :company_id %>
+     <%= f.hidden_field :order_value %>
+     <%= f.submit "確認画面へ", class: "btn btn-large btn-primary" %>
+<% end %>
+<h1><%= link_to 'トップページへ戻る', '/toppage/index' %></h1>

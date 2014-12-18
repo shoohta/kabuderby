@@ -17,7 +17,8 @@
   	<td><%= portfolio.company.value %></td>
     <th><%= portfolio.company.value * portfolio.quantity %></th>
     <th><%= portfolio.average * portfolio.quantity - portfolio.company.value * portfolio.quantity %>(<%= number_to_percentage(portfolio.average .quo(portfolio.company.value) * 100 - 100) %>)</th>
-	<td><%= link_to 'sell', tutorial_sell_path(portfolio) %></td>
+	<td><%= link_to 'sell', tutorial_sell_path(portfolio.company_id) %></td>
   </tr>
   <% end %> 
 </table>
+<h1><%= link_to 'トップページへ戻る', '/toppage/index' %></h1>

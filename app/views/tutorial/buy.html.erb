@@ -1,18 +1,22 @@
+<% if @error_message %>
+	<div class="alert alert-warning"><%= @error_message %></div>
+<% end %>
+
 <h1>
 購入画面
 </h1>
-<h2>残高:<%= current_user.cash %>円</h2>
+<h2>購買余力:<%= current_user.cash %>円</h2>
 <h2>銘柄: <%= @company.name %></h2>
-<h2>株価:  <%= @company.value %>円</h2>
-<h2>単元株: <%= @company.unit %></h2>
-<h1>フォーム（購入株数、購入額、決定ボタン）</h1>
+<h2>現在値:  <%= @company.value %>円</h2>
+<h2>単元株: <%= @company.unit %>株</h2>
 <%= form_for @order, url: tutorial_confirm_path do |f| %>
-      <div class="field">
-        <%= f.label :quantity, "購入株数" %><br>
-        <%= f.text_field :quantity %>
-        <%= f.hidden_field :company_id %>
-        <%= f.hidden_field :order_value %>
-      </div>
+    <div class="field">
+    <%= f.label :quantity, "購入株数" %><br>
+    <%= f.text_field :quantity %>
+    <%= f.hidden_field :company_id %>
+    <%= f.hidden_field :order_value %>
+    </div>
+    <%= f.submit "確認画面へ", class: "btn btn-large btn-primary" %>
+<% end %>
+<h1><%= link_to 'トップページへ戻る', '/toppage/index' %></h1>
 
-      <%= f.submit "確認画面へ", class: "btn btn-large btn-primary" %>
-    <% end %>

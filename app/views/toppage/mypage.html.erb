@@ -23,7 +23,7 @@
     <td><%= portfolio.average %></td>
     <td><%= portfolio.company.value %></td>
     <th><%= portfolio.company.value * portfolio.quantity %></th>
-    <th><%= portfolio.company.value * portfolio.quantity - portfolio.average * portfolio.quantity  %>(<%= number_to_percentage(portfolio.average .quo(portfolio.company.value) * 100 - 100) %>)</th>
+    <th><%= portfolio.company.value * portfolio.quantity - portfolio.average * portfolio.quantity  %>(<%= number_to_percentage(portfolio.company.value.quo(portfolio.average) * 100 - 100) %>)</th>
   </tr>
   <% end %> 
 </table>

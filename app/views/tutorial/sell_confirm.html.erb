@@ -1,6 +1,21 @@
 <h1>確認画面</h1>
-<h1>銘柄:<%= @portfolio.company.name %></h1>
-<h1>現在値:<%= @portfolio.company.value %>円</h1>
-<h1>購入株数:<%= @order.quantity %>株</h1>
-<h1>購入金額</h1>
-<h1>購入後の残高</h1>
+
+<% if @order.quantity <= @portfolio.quantity then %>
+	<h1>銘柄:<%= @portfolio.company.name %></h1>
+	<h1>現在値:<%= @portfolio.company.value %>円</h1>
+	<h1>売却株数:<%= @order.quantity %>株</h1>
+	<h1>売却金額:<%= @order.quantity * @portfolio.company.value %>円</h1>
+	<h1>売却後の購買余力:<%= @order.quantity * @portfolio.company.value + current_user.cash %>円</h1>
+	<%= form_for @order, url: tutorial_sell_complete_path do |f| %>
+		<%= f.hidden_field :user_id %>
+		<%= f.hidden_field :quantity %>
+		<%= f.hidden_field :order_value %>
+		<%= f.hidden_field :quantity %>
+		<%= f.submit "決定", class: "btn btn-large btn-primary" %>
+	<% end %>
+	<h1><%= link_to 'トップページへ戻る', '/toppage/index' %></h1>
+<% else  %>
+	<h1>持ち株数が不足しています</h1>
+	<h1><%= link_to '注文画面へ', '/tutorial/select_sell' %></h1>
+<% end %>  
+

@@ -5,14 +5,16 @@
     <th>売/買</th>
     <th>数量</th>
     <th>価格</th>
+    <th>売買金額</th>
     <th>約定日時</th>   
   </tr>
   <% @orders.each do |order| %>
   <tr>
-    <td><%= order.company.name %></td>
+  	<td><%= order.company.name %></td>
     <td><%= order.status %></td>
     <td><%= order.quantity %></td>
     <td><%= order.order_value %></td>
+    <td><%= order.quantity * order.order_value %></td>
     <td><%= order.created_at %></td>
   </tr>
   <% end %>

@@ -5,7 +5,6 @@ class Portfolio < ActiveRecord::Base
 
 	validates :quantity, :presence => true
 	validates :company_id, :presence => true
-	validates :order_value, :presence => true
 
 	has_many :users
 	has_many :users

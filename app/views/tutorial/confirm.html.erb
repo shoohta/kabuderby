@@ -1,13 +1,18 @@
-<h1>確認画面</h1>
-<h1>銘柄:<%= @company.name %></h1>
-<h1>購入株数:<%= @order.quantity %>株</h1>
-<h1>購入金額:<%= @company.value * @order.quantity %>円</h1>
-<h1>購入後の残高:<%= current_user.cash - @company.value * @order.quantity %>円</h1>
-<%= form_for @order, url: tutorial_complete_path do |f| %>
-<%= f.hidden_field :company_id %>
-<%= f.hidden_field :user_id %>
-<%= f.hidden_field :quantity %>
-<%= f.hidden_field :order_value %>
-<%= f.submit "決定", class: "btn btn-large btn-primary" %>
-
+<% if @company.value * @order.quantity < current_user.cash && (current_user.cash + current_user.total_value) > (@company.value * @order.quantity) * 10 + (@portfolio.quantity * @company.value) * 10  then %>
+	<h1>確認画面</h1>
+	<h1>銘柄:<%= @company.name %></h1>
+	<h1>購入株数:<%= @order.quantity %>株</h1>
+	<h1>購入金額:<%= @company.value * @order.quantity %>円</h1>
+	<h1>購入後の購買余力:<%= current_user.cash - @company.value * @order.quantity %>円</h1>
+	<%= form_for @order, url: {controller: 'tutorial', action: 'complete', id: @order.company_id} do |f| %>
+		<%= f.hidden_field :company_id %>
+		<%= f.hidden_field :user_id %>
+		<%= f.hidden_field :quantity %>
+		<%= f.hidden_field :order_value %>
+		<%= f.submit "決定", class: "btn btn-large btn-primary" %>
+	<% end %>
+	<h1><%= link_to 'トップページへ戻る', '/toppage/index' %></h1>
+<% else %>
+	<h1>購入余力が不足しています</h1>
+	<h1><%= link_to '注文画面へ', '/tutorial/select' %></h1>	
 <% end %>

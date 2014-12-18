@@ -1,0 +1,12 @@
+<h1>確認画面</h1>
+<h1>銘柄:<%= @company.name %></h1>
+<h1>現在値:<%= @company.value %>円</h1>
+<h1>売却株数:100株</h1>
+<h1>売却金額:<%= 100 * @company.value %>円</h1>
+<h1>売却後購買余力:10000000円</h1>
+<%= form_for @order, url: trial_sell_complete_path do |f| %>
+	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :quantity %>
+	<%= f.hidden_field :order_value %>
+	<%= f.submit "決定", class: "btn btn-large btn-primary" %>
+<% end %>
